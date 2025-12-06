@@ -4,59 +4,87 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Professional Training Program</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* --- General Dark Mode & Typography --- */
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #0d0d0d; /* Deep Black Background */
-            color: #ffffff; /* White Text */
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: #ffffff;
+            min-height: 100vh;
         }
         h1 {
-            color: #ff5722; /* Vibrant Orange for Title */
+            color: #fff;
             text-align: center;
-            padding: 25px 0;
+            padding: 35px 0;
             margin: 0;
-            font-size: 1.8em;
+            font-size: 2.5em;
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            background-color: #1a1a1a;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            letter-spacing: 3px;
+            background: linear-gradient(135deg, #ff5722 0%, #ff9800 100%);
+            box-shadow: 0 4px 20px rgba(255, 87, 34, 0.4);
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+            position: relative;
+            overflow: hidden;
+        }
+        h1::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: shine 3s infinite;
+        }
+        @keyframes shine {
+            0% { left: -100%; }
+            50%, 100% { left: 100%; }
         }
 
         /* --- Tab Navigation --- */
         .tabs {
             display: flex;
-            background-color: #1a1a1a;
-            margin-bottom: 20px;
+            background: linear-gradient(180deg, #1a1a1a 0%, #0f0f0f 100%);
+            margin-bottom: 0;
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+            border-bottom: 3px solid #ff5722;
         }
         .tab-button {
             flex: 1;
             background-color: transparent;
-            color: #a0a0a0;
+            color: #808080;
             border: none;
-            padding: 15px;
+            padding: 20px;
             cursor: pointer;
-            font-size: 1em;
-            font-weight: 700;
+            font-size: 1.1em;
+            font-weight: 800;
             text-transform: uppercase;
             transition: all 0.3s ease;
-            border-bottom: 4px solid transparent;
+            border-bottom: 5px solid transparent;
+            position: relative;
+            letter-spacing: 1px;
         }
         .tab-button:hover {
             color: #ffffff;
-            background-color: #2a2a2a;
+            background: linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%);
+            transform: translateY(-2px);
         }
         .tab-button.active {
-            color: #4CAF50; /* Green for Active Tab */
-            border-bottom: 4px solid #4CAF50;
-            background-color: #222;
+            color: #ff5722;
+            border-bottom: 5px solid #ff5722;
+            background: linear-gradient(180deg, #252525 0%, #1a1a1a 100%);
+            box-shadow: inset 0 -3px 10px rgba(255, 87, 34, 0.3);
+        }
+        .tab-button i {
+            margin-right: 8px;
+            font-size: 1.2em;
         }
 
         /* --- Content Layout --- */
@@ -77,20 +105,41 @@
 
         /* --- Section Headers --- */
         h2 {
-            color: #4CAF50; /* Green Section Titles */
-            border-left: 5px solid #4CAF50;
-            padding-left: 15px;
-            margin-top: 20px;
-            font-size: 1.4em;
-            font-weight: 800;
+            color: #ff5722;
+            border-left: 6px solid #ff5722;
+            padding-left: 20px;
+            margin-top: 30px;
+            font-size: 1.8em;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            background: linear-gradient(90deg, rgba(255,87,34,0.1) 0%, transparent 100%);
+            padding: 15px 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        h2 i {
+            margin-right: 12px;
+            color: #ff9800;
         }
         h3 {
-            color: #FFC107; /* Amber Sub-headers */
-            margin-top: 25px;
-            font-size: 1.1em;
-            font-weight: 700;
+            color: #fff;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #ff5722 0%, #ff9800 100%);
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(255, 87, 34, 0.3);
+            display: inline-block;
+            position: relative;
+        }
+        h3 i {
+            margin-right: 10px;
+            font-size: 1.2em;
         }
 
         /* --- Exercise List --- */
@@ -99,19 +148,40 @@
             padding: 0;
         }
         li {
-            background-color: #1c1c1c;
-            margin-bottom: 12px;
-            padding: 15px;
-            border-radius: 8px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
+            margin-bottom: 15px;
+            padding: 20px;
+            border-radius: 12px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            border: 1px solid #333;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            transition: transform 0.2s;
+            gap: 12px;
+            border: 2px solid #333;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: linear-gradient(180deg, #ff5722 0%, #ff9800 100%);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+        li:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(255, 87, 34, 0.3);
+            border-color: #ff5722;
+        }
+        li:hover::before {
+            transform: scaleY(1);
         }
         li:active {
-            transform: scale(0.99); /* Subtle click effect */
+            transform: translateY(-1px);
         }
 
         /* --- Exercise Details --- */
@@ -121,45 +191,82 @@
             align-items: flex-start;
         }
         .exercise-name {
-            font-size: 1.1em;
-            font-weight: 700;
-            color: #eee;
+            font-size: 1.2em;
+            font-weight: 800;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .exercise-name::before {
+            content: '\f111';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            margin-right: 10px;
+            color: #ff5722;
+            font-size: 0.5em;
+            vertical-align: middle;
         }
         .prescription {
-            font-family: 'Courier New', Courier, monospace; /* Monospace for numbers */
+            font-family: 'Courier New', Courier, monospace;
             font-weight: 900;
-            color: #FFC107; /* Yellow for sets/reps */
-            background-color: #333;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.95em;
+            color: #fff;
+            background: linear-gradient(135deg, #ff5722 0%, #ff9800 100%);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 1em;
             white-space: nowrap;
+            box-shadow: 0 2px 10px rgba(255, 87, 34, 0.4);
+            letter-spacing: 1px;
         }
 
         /* --- Video Button --- */
         a.video-btn {
-            display: block;
-            background-color: #ff5722; /* Orange Button */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #ff5722 0%, #e64a19 100%);
             color: white;
             text-decoration: none;
             text-align: center;
-            padding: 10px;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 0.9em;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 900;
+            font-size: 0.95em;
             text-transform: uppercase;
-            transition: background-color 0.2s;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 87, 34, 0.4);
+            letter-spacing: 1px;
+            border: 2px solid transparent;
         }
         a.video-btn:hover {
-            background-color: #e64a19;
+            background: linear-gradient(135deg, #ff6b3d 0%, #ff5722 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 87, 34, 0.6);
+            border-color: #fff;
+        }
+        a.video-btn:active {
+            transform: translateY(0);
+        }
+        a.video-btn i {
+            font-size: 1.1em;
         }
         
         /* --- Conditioning Section Special Styling --- */
         .conditioning-box {
-            border-left: 4px solid #03A9F4; /* Blue accent */
+            border-left: 4px solid #00bcd4;
+            background: linear-gradient(135deg, #1a2a2a 0%, #1a3a3a 100%);
+        }
+        .conditioning-box::before {
+            background: linear-gradient(180deg, #00bcd4 0%, #0097a7 100%);
         }
         .conditioning-box .prescription {
-            color: #03A9F4;
+            background: linear-gradient(135deg, #00bcd4 0%, #0097a7 100%);
+            box-shadow: 0 2px 10px rgba(0, 188, 212, 0.4);
+        }
+        .conditioning-box:hover {
+            border-color: #00bcd4;
+            box-shadow: 0 6px 25px rgba(0, 188, 212, 0.3);
         }
 
         /* --- Desktop Optimization --- */
@@ -185,184 +292,184 @@
 </head>
 <body>
 
-    <h1>🚀 Power & Pull V2</h1>
+    <h1><i class="fas fa-dumbbell"></i> Power & Pull V2 <i class="fas fa-dumbbell"></i></h1>
 
     <div class="tabs">
-        <button class="tab-button active" onclick="openDay(event, 'D1')">Day 1: Push + Pull</button>
-        <button class="tab-button" onclick="openDay(event, 'D2')">Day 2: Pull + Push</button>
+        <button class="tab-button active" onclick="openDay(event, 'D1')"><i class="fas fa-fire"></i> Day 1: Push + Pull</button>
+        <button class="tab-button" onclick="openDay(event, 'D2')"><i class="fas fa-bolt"></i> Day 2: Pull + Push</button>
     </div>
 
     <div id="D1" class="tab-content active">
-        <h2>D1 – Upper Push + Lower Pull</h2>
+        <h2><i class="fas fa-calendar-day"></i> D1 – Upper Push + Lower Pull</h2>
 
-        <h3>🔥 Prep (3 Rounds)</h3>
+        <h3><i class="fas fa-fire-flame-curved"></i> Prep (3 Rounds)</h3>
         <ul>
             <li>
                 <div class="exercise-header">
                     <span class="exercise-name">Bird Dog</span>
                     <span class="prescription">×10 each</span>
                 </div>
-                <a href="https://www.youtube.com/watch?v=ufCbCMlJLAs" target="_blank" class="video-btn">▶ Watch</a>
+                <a href="https://www.youtube.com/watch?v=ufCbCMlJLAs" target="_blank" class="video-btn"><i class="fas fa-play-circle"></i> Watch</a>
             </li>
             <li>
                 <div class="exercise-header">
                     <span class="exercise-name">Dead Bug</span>
                     <span class="prescription">×10 each</span>
                 </div>
-                <a href="https://www.youtube.com/watch?v=lqnuY3wiBzA" target="_blank" class="video-btn">▶ Watch</a>
+                <a href="https://www.youtube.com/watch?v=lqnuY3wiBzA" target="_blank" class="video-btn"><i class="fas fa-play-circle"></i> Watch</a>
             </li>
             <li>
                 <div class="exercise-header">
                     <span class="exercise-name">Single Hip Bridge</span>
                     <span class="prescription">×10 each</span>
                 </div>
-                <a href="https://www.youtube.com/watch?v=18GVqjfHy-M" target="_blank" class="video-btn">▶ Watch</a>
+                <a href="https://www.youtube.com/watch?v=18GVqjfHy-M" target="_blank" class="video-btn"><i class="fas fa-play-circle"></i> Watch</a>
             </li>
         </ul>
 
-        <h3>🏋️ Main Work</h3>
+        <h3><i class="fas fa-dumbbell"></i> Main Work</h3>
         <ul>
             <li>
                 <div class="exercise-header">
                     <span class="exercise-name">Deadlift</span>
                     <span class="prescription">2×6 @RPE 7–8</span>
                 </div>
-                <a href="https://www.youtube.com/watch?v=1ZXobu7JvvE" target="_blank" class="video-btn">▶ Watch</a>
+                <a href="https://www.youtube.com/watch?v=1ZXobu7JvvE" target="_blank" class="video-btn"><i class="fas fa-play-circle"></i> Watch</a>
             </li>
             <li>
                 <div class="exercise-header">
                     <span class="exercise-name">Hip Thrust</span>
                     <span class="prescription">3×8–10</span>
                 </div>
-                <a href="https://www.youtube.com/watch?v=pF17m_CXfL0" target="_blank" class="video-btn">▶ Watch</a>
+                <a href="https://www.youtube.com/watch?v=pF17m_CXfL0" target="_blank" class="video-btn"><i class="fas fa-play-circle"></i> Watch</a>
             </li>
             <li>
                 <div class="exercise-header">
                     <span class="exercise-name">Single Leg Curl</span>
                     <span class="prescription">2×10</span>
                 </div>
-                <a href="https://www.youtube.com/watch?v=IOufFLwNOTU" target="_blank" class="video-btn">▶ Watch</a>
+                <a href="https://www.youtube.com/watch?v=IOufFLwNOTU" target="_blank" class="video-btn"><i class="fas fa-play-circle"></i> Watch</a>
             </li>
             <li>
                 <div class="exercise-header">
                     <span class="exercise-name">Calf Raise</span>
                     <span class="prescription">3×20</span>
                 </div>
-                <a href="https://www.youtube.com/watch?v=MAMzF7iZNkc" target="_blank" class="video-btn">▶ Watch</a>
+                <a href="https://www.youtube.com/watch?v=MAMzF7iZNkc" target="_blank" class="video-btn"><i class="fas fa-play-circle"></i> Watch</a>
             </li>
             <li>
                 <div class="exercise-header">
                     <span class="exercise-name">Chest Press</span>
                     <span class="prescription">4×8</span>
                 </div>
-                <a href="https://www.youtube.com/watch?v=gBZkSn-zsD0" target="_blank" class="video-btn">▶ Watch</a>
+                <a href="https://www.youtube.com/watch?v=gBZkSn-zsD0" target="_blank" class="video-btn"><i class="fas fa-play-circle"></i> Watch</a>
             </li>
             <li>
                 <div class="exercise-header">
                     <span class="exercise-name">Incline DB Press</span>
                     <span class="prescription">3×10</span>
                 </div>
-                <a href="https://www.youtube.com/watch?v=GFYrRBoov3w" target="_blank" class="video-btn">▶ Watch</a>
+                <a href="https://www.youtube.com/watch?v=GFYrRBoov3w" target="_blank" class="video-btn"><i class="fas fa-play-circle"></i> Watch</a>
             </li>
             <li>
                 <div class="exercise-header">
                     <span class="exercise-name">Half Kneeling Landmine Press</span>
                     <span class="prescription">3×10</span>
                 </div>
-                <a href="https://www.youtube.com/watch?v=CA6tkn3Qilc" target="_blank" class="video-btn">▶ Watch</a>
+                <a href="https://www.youtube.com/watch?v=CA6tkn3Qilc" target="_blank" class="video-btn"><i class="fas fa-play-circle"></i> Watch</a>
             </li>
             <li>
                 <div class="exercise-header">
                     <span class="exercise-name">Overhead Triceps Ext.</span>
                     <span class="prescription">3×10</span>
                 </div>
-                <a href="https://www.youtube.com/watch?v=9wxRhONFsRA" target="_blank" class="video-btn">▶ Watch</a>
+                <a href="https://www.youtube.com/watch?v=9wxRhONFsRA" target="_blank" class="video-btn"><i class="fas fa-play-circle"></i> Watch</a>
             </li>
         </ul>
 
-        <h3>🏃 Conditioning</h3>
+        <h3><i class="fas fa-person-running"></i> Conditioning</h3>
         <ul>
             <li class="conditioning-box">
                 <div class="exercise-header">
                     <span class="exercise-name">Running (Steady Pace)</span>
                     <span class="prescription">15 min</span>
                 </div>
-                <a href="https://www.youtube.com/watch?v=hk4mgq9Ppvk" target="_blank" class="video-btn">▶ Form Tips</a>
+                <a href="https://www.youtube.com/watch?v=hk4mgq9Ppvk" target="_blank" class="video-btn"><i class="fas fa-play-circle"></i> Form Tips</a>
             </li>
         </ul>
     </div>
 
     <div id="D2" class="tab-content">
-        <h2>D2 – Upper Pull + Lower Push</h2>
+        <h2><i class="fas fa-calendar-day"></i> D2 – Upper Pull + Lower Push</h2>
 
-        <h3>🏋️ Main Work</h3>
+        <h3><i class="fas fa-dumbbell"></i> Main Work</h3>
         <ul>
             <li>
                 <div class="exercise-header">
                     <span class="exercise-name">Squat</span>
                     <span class="prescription">4×6–8</span>
                 </div>
-                <a href="https://www.youtube.com/watch?v=eMYjBnIVb_A" target="_blank" class="video-btn">▶ Watch</a>
+                <a href="https://www.youtube.com/watch?v=eMYjBnIVb_A" target="_blank" class="video-btn"><i class="fas fa-play-circle"></i> Watch</a>
             </li>
             <li>
                 <div class="exercise-header">
                     <span class="exercise-name">DB Side Lunges</span>
                     <span class="prescription">3×10/leg</span>
                 </div>
-                <a href="https://www.youtube.com/watch?v=IsjTYbYBXyc" target="_blank" class="video-btn">▶ Watch</a>
+                <a href="https://www.youtube.com/watch?v=IsjTYbYBXyc" target="_blank" class="video-btn"><i class="fas fa-play-circle"></i> Watch</a>
             </li>
             <li>
                 <div class="exercise-header">
                     <span class="exercise-name">Leg Extension</span>
                     <span class="prescription">3×12</span>
                 </div>
-                <a href="https://www.youtube.com/watch?v=hdpz7kKCHvE" target="_blank" class="video-btn">▶ Watch</a>
+                <a href="https://www.youtube.com/watch?v=hdpz7kKCHvE" target="_blank" class="video-btn"><i class="fas fa-play-circle"></i> Watch</a>
             </li>
             <li>
                 <div class="exercise-header">
                     <span class="exercise-name">T-Bar Row</span>
                     <span class="prescription">4×8</span>
                 </div>
-                <a href="https://www.youtube.com/watch?v=rvbjGSQ2tVE" target="_blank" class="video-btn">▶ Watch</a>
+                <a href="https://www.youtube.com/watch?v=rvbjGSQ2tVE" target="_blank" class="video-btn"><i class="fas fa-play-circle"></i> Watch</a>
             </li>
             <li>
                 <div class="exercise-header">
                     <span class="exercise-name">Lat Pulldown</span>
                     <span class="prescription">3×10</span>
                 </div>
-                <a href="https://www.youtube.com/watch?v=AOpi-p0cJkc" target="_blank" class="video-btn">▶ Watch</a>
+                <a href="https://www.youtube.com/watch?v=AOpi-p0cJkc" target="_blank" class="video-btn"><i class="fas fa-play-circle"></i> Watch</a>
             </li>
             <li>
                 <div class="exercise-header">
                     <span class="exercise-name">Wide Seated Row</span>
                     <span class="prescription">3×10</span>
                 </div>
-                <a href="https://www.youtube.com/watch?v=rl7iOFzKbHk" target="_blank" class="video-btn">▶ Watch</a>
+                <a href="https://www.youtube.com/watch?v=rl7iOFzKbHk" target="_blank" class="video-btn"><i class="fas fa-play-circle"></i> Watch</a>
             </li>
             <li>
                 <div class="exercise-header">
                     <span class="exercise-name">Biceps Curl</span>
                     <span class="prescription">3×10</span>
                 </div>
-                <a href="https://www.youtube.com/watch?v=XE_pHwbst04" target="_blank" class="video-btn">▶ Watch</a>
+                <a href="https://www.youtube.com/watch?v=XE_pHwbst04" target="_blank" class="video-btn"><i class="fas fa-play-circle"></i> Watch</a>
             </li>
             <li>
                 <div class="exercise-header">
                     <span class="exercise-name">Trap Shrug</span>
                     <span class="prescription">3×10</span>
                 </div>
-                <a href="https://www.youtube.com/watch?v=xDt6qbKgLkY" target="_blank" class="video-btn">▶ Watch</a>
+                <a href="https://www.youtube.com/watch?v=xDt6qbKgLkY" target="_blank" class="video-btn"><i class="fas fa-play-circle"></i> Watch</a>
             </li>
         </ul>
 
-        <h3>🏃 Conditioning</h3>
+        <h3><i class="fas fa-person-running"></i> Conditioning</h3>
         <ul>
             <li class="conditioning-box">
                 <div class="exercise-header">
                     <span class="exercise-name">Running (Moderate Pace)</span>
                     <span class="prescription">15 min</span>
                 </div>
-                <a href="https://www.youtube.com/watch?v=hk4mgq9Ppvk" target="_blank" class="video-btn">▶ Form Tips</a>
+                <a href="https://www.youtube.com/watch?v=hk4mgq9Ppvk" target="_blank" class="video-btn"><i class="fas fa-play-circle"></i> Form Tips</a>
             </li>
         </ul>
     </div>
